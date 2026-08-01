@@ -78,6 +78,8 @@
   .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:13.5px;font-family:inherit;background:var(--panel);color:var(--text)}
   .field textarea{resize:vertical;min-height:44px}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .lbox{margin-top:12px;padding:13px 15px;background:linear-gradient(135deg,#FFF1F7,#FFE6F1);border:1px solid #FFC9DF;border-left:4px solid var(--brand);border-radius:12px;font-size:13px;line-height:1.75;color:#7A5566}
+  .lbox b{color:var(--warn)}
   .styles{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px}
   .styles .st{font-size:12.5px;border:1px solid var(--line);border-radius:20px;padding:5px 13px;cursor:pointer;background:var(--panel)}
   .styles .st.on{background:var(--brand);color:#fff;border-color:var(--brand)}
@@ -183,6 +185,13 @@ const MODULES = {
   buy: {
     icon:'<svg viewBox="0 0 64 64" filter="url(#felt)"><rect x="10" y="30" width="44" height="24" rx="6" fill="#FFC2D6"/><path d="M8 33 L32 12 L56 33 Z" fill="#FF9DBE"/><rect x="27" y="40" width="10" height="14" rx="3" fill="#FFF0F7"/><rect x="16" y="38" width="9" height="9" rx="2" fill="#FFD9E7"/><rect x="39" y="38" width="9" height="9" rx="2" fill="#FFD9E7"/></svg>', name:'买房前期避坑台',
     intro:'买错一步，多花几十万。以下按「要点 + 常见套路 + 解决方案」结构，逐条避坑。所有内容均可复制保存。',
+    local:'<b>📍 泉州 / 晋江 本地购房参考（以闽南为例）</b><br>'
+      +'• <b>限购</b>：泉州执行宽松限购（按家庭住房套数认定），晋江为县级市基本不限购；一切以「泉州市住建局」最新公告为准，勿信中介口头承诺。<br>'
+      +'• <b>落户</b>：泉州已全面放开落户（租房/就业/购房均可落家庭户），晋江随泉州政策，购房即可迁入户口、子女就近划片入学。<br>'
+      +'• <b>热门板块</b>：泉州看丰泽（市中心）、鲤城（老城优质学区）、江南/池店（衔接晋江）；晋江看市区（青阳/梅岭）、陈埭（鞋都）、安海。<br>'
+      +'• <b>学区</b>：以丰泽/鲤城当年教育局划片为准；晋江一中、养正中学片区热度高，单价溢价明显。<br>'
+      +'• <b>公积金</b>：泉州公积金贷款额度/利率按福建省统一政策；晋江缴存职工可在泉州申请公积金贷款，异地缴存需确认互认。<br>'
+      +'• <b>气候查验</b>：闽南「回南天」潮湿、夏秋台风多，看房重点查墙面霉斑、窗框密封与阳台/卫生间防水。',
     sections:[
       {title:'① 购房资格核查', items:[
         {pt:'先确认本地限购政策：以家庭为单位核算，看户口、社保/个税连续缴纳年限（多数城市需 2–5 年）、已有套数。',tp:'中介口头承诺“能包装资格、代缴社保破限购”。',fx:'只信当地住建委/税务局官网与不动产登记中心书面结论；社保断缴不认，代缴有法律风险。'},
@@ -229,6 +238,11 @@ const MODULES = {
   prep: {
     icon:'<svg viewBox="0 0 64 64" filter="url(#felt)"><rect x="10" y="30" width="44" height="18" rx="9" fill="#FFB3CE"/><rect x="7" y="26" width="13" height="22" rx="6.5" fill="#FF9DBE"/><rect x="44" y="26" width="13" height="22" rx="6.5" fill="#FF9DBE"/><rect x="18" y="33" width="28" height="13" rx="6.5" fill="#FFF0F7"/></svg>', name:'装修前期筹备台',
     intro:'装修超支 80% 栽在“前期没想清”。以下帮你把预算、模式、顺序一次定对。',
+    local:'<b>📍 泉州 / 晋江 本地装修参考（以闽南为例）</b><br>'
+      +'• <b>建材采购</b>：泉州喜盈门国际建材城、晋江国际建材城、石狮辅料市场是主流集散地；佛山瓷砖在泉州设仓，拿货价较优，建议多比 2–3 家。<br>'
+      +'• <b>人工行情</b>：闽南工价中等，<b>半包为主流</b>（工+辅料，主材自购更可控）；泥瓦/水电师傅日薪随季节浮动，签约前多询几家、按进度付款。<br>'
+      +'• <b>风格偏好</b>：本地偏实用耐脏，瓷砖多选浅灰/米黄通铺；全屋定制颗粒板性价比高，原木/奶油风近年走俏。<br>'
+      +'• <b>防潮抗台</b>：回南天重点做墙面与卫生间防水、加强通风；门窗选抗风压好的型材，低楼层加防潮地垄与防盗网。',
     sections:[
       {title:'① 预算分配方案', items:[
         {pt:'总预算按模块切：硬装施工 30–35%、主材（瓷砖/地板/门窗/橱柜）30–35%、全屋定制 15%、软装家具 10–15%、家电 10%、备用金 10–15%。',tp:'“8 万全包”低价引流，开工后增项翻倍。',fx:'先做详细预算表再找施工；硬性预留 10–15% 不可预见费；主材预留 20% 升级空间。'},
@@ -264,6 +278,10 @@ const MODULES = {
   flow: {
     icon:'<svg viewBox="0 0 64 64" filter="url(#felt)"><rect x="29" y="13" width="7" height="41" rx="3.5" fill="#FFC2D6"/><rect x="12" y="13" width="28" height="13" rx="6.5" fill="#FF9DBE"/><rect x="12" y="19" width="28" height="4" rx="2" fill="#FFE0EE"/></svg>', name:'标准施工流程台',
     intro:'以下为真实工地标准顺序，严格不颠倒。每块含工期、验收、易踩坑。交叉施工雷区见文末。',
+    local:'<b>📍 闽南（泉州/晋江）施工特别提醒</b><br>'
+      +'• <b>防潮</b>：回南天（2–4 月）墙面未干透就刷漆易起泡脱落，建议错峰施工或加强通风除湿；卫生间/阳台防水高度做足，<b>闭水试验务必做满 48h</b>。<br>'
+      +'• <b>抗台风</b>：门窗选抗风压型材、低楼层加防盗防潮；外墙与窗框密封打胶到位，防止台风季渗水。<br>'
+      +'• <b>材料存放</b>：水泥/腻子/板材雨季易受潮，进场后垫高离地、覆盖防雨，避免含水率超标影响施工质量。',
     steps:[
       {n:'STEP 01',nm:'前期拆除改造',d:'3–7 天',meta:['拆非承重墙','砌墙','门洞修正','垃圾清运'],points:[
         '验收：确认拆除范围仅为非承重墙（查原始结构图）；新砌墙挂网抹灰；门洞尺寸按门扇留余量。',
@@ -352,7 +370,7 @@ function openModule(key){
   const c = $('#content'); c.style.display='block';
   let html = `<div class="crumb" onclick="showMenu()">☰ 菜单 / <b>${m.name}</b></div>
     <div class="m-head"><div class="ic">${m.icon}</div><h2>${m.name}</h2></div>
-    <div class="m-intro">${m.intro}</div>`;
+    <div class="m-intro">${m.intro}</div>` + (m.local ? `<div class="lbox">${m.local}</div>` : '');
 
   if(key==='flow'){
     html += `<div class="flow">`;
@@ -385,10 +403,11 @@ function openModule(key){
     html += `<div class="gen" id="gen">
       <div class="grid2">
         <div class="field"><label>建筑面积（㎡）</label><input id="b_area" placeholder="如 89" inputmode="decimal"></div>
-        <div class="field"><label>城市（自动识别能级）</label><input id="b_city" list="citylist" placeholder="如 北京 / 成都 / 杭州 / 老家县城" autocomplete="off">
+        <div class="field"><label>城市（自动识别能级）</label><input id="b_city" list="citylist" placeholder="如 北京 / 泉州 / 晋江 / 老家县城" autocomplete="off">
           <datalist id="citylist">
             <option value="北京"></option><option value="上海"></option><option value="广州"></option><option value="深圳"></option>
             <option value="成都"></option><option value="重庆"></option><option value="杭州"></option><option value="武汉"></option><option value="苏州"></option><option value="西安"></option><option value="南京"></option><option value="天津"></option><option value="长沙"></option><option value="郑州"></option><option value="青岛"></option><option value="东莞"></option><option value="宁波"></option><option value="合肥"></option><option value="福州"></option><option value="无锡"></option><option value="厦门"></option><option value="佛山"></option><option value="昆明"></option><option value="沈阳"></option><option value="济南"></option><option value="哈尔滨"></option><option value="长春"></option><option value="南昌"></option><option value="贵阳"></option><option value="南宁"></option><option value="石家庄"></option><option value="太原"></option><option value="兰州"></option><option value="海口"></option><option value="珠海"></option>
+            <option value="泉州"></option><option value="晋江"></option><option value="石狮"></option><option value="厦门"></option>
           </datalist></div>
       </div>
       <div class="grid2">
@@ -436,7 +455,7 @@ function genPrompt(){
 let budgetTxt='';
 const CITY_TIER={
   '一线':{label:'一线（北上广深）',mul:1.30,cities:['北京','上海','广州','深圳']},
-  '新一线':{label:'新一线（成都/杭州/武汉等）',mul:1.15,cities:['成都','重庆','杭州','武汉','苏州','西安','南京','天津','长沙','郑州','东莞','青岛','昆明','宁波','合肥','福州','无锡','厦门','佛山','沈阳','济南','哈尔滨','长春','南昌','贵阳','南宁','常州','南通','嘉兴','徐州','石家庄','太原','兰州','海口','珠海','中山','惠州','绍兴','烟台']},
+  '新一线':{label:'新一线（成都/杭州/武汉等）',mul:1.15,cities:['成都','重庆','杭州','武汉','苏州','西安','南京','天津','长沙','郑州','东莞','青岛','昆明','宁波','合肥','福州','无锡','厦门','佛山','沈阳','济南','哈尔滨','长春','南昌','贵阳','南宁','常州','南通','嘉兴','徐州','石家庄','太原','兰州','海口','珠海','中山','惠州','绍兴','烟台','泉州','晋江','石狮']},
   '二线':{label:'二线',mul:1.00},
   '三线':{label:'三线及以下',mul:0.85}
 };
