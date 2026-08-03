@@ -88,6 +88,42 @@
   .ex{background:var(--panel);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:12.5px;color:var(--soft)}
   .ex b{color:var(--text)}
 
+  /* 直达链接 */
+  .links{margin-top:14px;padding:13px 15px;background:linear-gradient(135deg,#FFF4FA,#FDEAF4);border:1px solid #FFCFE3;border-left:4px solid var(--brand2);border-radius:12px}
+  .links h4{font-size:13.5px;margin:0 0 9px;color:var(--brand2)}
+  .linkrow{display:flex;flex-wrap:wrap;gap:8px}
+  .lk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;text-decoration:none;background:#fff;border:1px solid #FFD3E5;border-radius:999px;padding:7px 13px;color:#B23B6E;font-weight:700;box-shadow:0 1px 4px rgba(255,150,190,.12);transition:.15s}
+  .lk:hover{background:var(--brand2);color:#fff;border-color:var(--brand2);transform:translateY(-1px)}
+  .lk .em{font-size:13px}
+
+  /* 进度条 */
+  .progress{margin:10px 0 5px;height:10px;background:var(--panel);border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2));width:0;transition:.3s}
+  .ptxt{font-size:12px;color:var(--soft);margin-bottom:10px}
+  .ptxt b{color:var(--brand2)}
+
+  /* 可勾选清单 */
+  .checklist{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;box-shadow:var(--shadow)}
+  .checklist h4{font-size:14px;margin:0 0 4px;color:var(--text)}
+  .chk{display:flex;align-items:flex-start;gap:10px;padding:9px 4px;border-bottom:1px dashed var(--line);cursor:pointer;font-size:13px;line-height:1.5}
+  .chk:last-child{border-bottom:none}
+  .chk .box{flex:0 0 20px;width:20px;height:20px;border-radius:6px;border:2px solid var(--brand);margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;background:#fff;transition:.15s}
+  .chk.on .box{background:var(--brand2);border-color:var(--brand2)}
+  .chk.on .txt{color:var(--soft);text-decoration:line-through}
+  .chk .txt{flex:1}
+
+  /* 施工步骤完成态 */
+  .step.done{border-left-color:var(--brand2);background:#F6FBF7}
+  .step .done-tog{display:inline-block;margin-top:7px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:#fff;color:var(--soft);user-select:none}
+  .step.done .done-tog{background:var(--brand2);color:#fff;border-color:var(--brand2)}
+
+  /* 菜单页笔记 + 徽标 */
+  .note{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;box-shadow:var(--shadow)}
+  .note h4{font-size:14px;margin:0 0 8px;color:var(--text);display:flex;justify-content:space-between;align-items:center}
+  .note h4 small{font-size:11px;color:var(--brand2);font-weight:700}
+  .note textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;line-height:1.6;background:#FCFBF7;color:var(--text);font-family:inherit;resize:vertical}
+  .badge{display:inline-block;font-size:10.5px;font-weight:800;background:var(--brand2);color:#fff;border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:middle}
+
   /* 命令栏 */
   .bar{position:fixed;left:0;right:0;bottom:0;background:rgba(255,246,251,.94);backdrop-filter:blur(8px);border-top:1.5px solid var(--line);padding:11px 14px}
   .bar .inner{max-width:920px;margin:0 auto;display:flex;gap:8px}
@@ -137,7 +173,7 @@
     <div class="fcard" onclick="openModule('buy')">
       <span class="tag">卡片 1</span>
       <div class="ic"><svg viewBox="0 0 64 64" filter="url(#felt)"><rect x="10" y="30" width="44" height="24" rx="6" fill="#FFC2D6"/><path d="M8 33 L32 12 L56 33 Z" fill="#FF9DBE"/><rect x="27" y="40" width="10" height="14" rx="3" fill="#FFF0F7"/><rect x="16" y="38" width="9" height="9" rx="2" fill="#FFD9E7"/><rect x="39" y="38" width="9" height="9" rx="2" fill="#FFD9E7"/></svg></div>
-      <h3>买房前期避坑台</h3>
+      <h3>买房前期避坑台<span class="badge" id="badge_buy"></span></h3>
       <p>购房资格 · 选地段 · 楼层 · 新/二手对比 · 看房查验 · 合同避雷 · 首付贷款 · 公摊得房率 · 产权 · 税费</p>
     </div>
     <div class="fcard" onclick="openModule('prep')">
@@ -149,7 +185,7 @@
     <div class="fcard" onclick="openModule('flow')">
       <span class="tag">卡片 3</span>
       <div class="ic"><svg viewBox="0 0 64 64" filter="url(#felt)"><rect x="29" y="13" width="7" height="41" rx="3.5" fill="#FFC2D6"/><rect x="12" y="13" width="28" height="13" rx="6.5" fill="#FF9DBE"/><rect x="12" y="19" width="28" height="4" rx="2" fill="#FFE0EE"/></svg></div>
-      <h3>标准施工流程台</h3>
+      <h3>标准施工流程台<span class="badge" id="badge_flow"></span></h3>
       <p>完整施工顺序 · 各工序工期 · 验收标准 · 停工检查 · 水电/瓦工/木工/油工规范 · 主材进场</p>
     </div>
     <div class="fcard" onclick="openModule('draw')">
@@ -164,6 +200,11 @@
       <h3>装修预算智能测算台</h3>
       <p>输入面积 / 城市能级 / 装修档次 / 装修方式，自动拆分硬装·软装·家电预算，标注超支风险与省钱点位，强制预留应急金</p>
     </div>
+  </div>
+
+  <div class="note">
+    <h4>📝 我的买房装修笔记 <small id="note_save">本机自动保存</small></h4>
+    <textarea id="mynote" placeholder="随手记：心仪楼盘、预算红线、待办清单、灵感……（自动存在本机，关页不丢）"></textarea>
   </div>
 
   <div id="content"></div>
@@ -192,6 +233,27 @@ const MODULES = {
       +'• <b>学区</b>：以丰泽/鲤城当年教育局划片为准；晋江一中、养正中学片区热度高，单价溢价明显。<br>'
       +'• <b>公积金</b>：泉州公积金贷款额度/利率按福建省统一政策；晋江缴存职工可在泉州申请公积金贷款，异地缴存需确认互认。<br>'
       +'• <b>气候查验</b>：闽南「回南天」潮湿、夏秋台风多，看房重点查墙面霉斑、窗框密封与阳台/卫生间防水。',
+    checklist:[
+      '查开发商“五证”，重点看《商品房预售许可证》',
+      '看户型图 / 朝向 / 采光，带卷尺量净尺寸',
+      '核算得房率（高层72–78%、洋房85–90%），防公摊虚高',
+      '避开设备层 / 腰线层 / 底层 / 顶层，问清设备层位置',
+      '分三次看房：晴看采光、雨看渗水、夜看噪音亮灯率',
+      '查墙体裂缝、墙角霉斑、下水道反味、窗框密封',
+      '卫生间 / 厨房做闭水通水试验，顶楼重点查漏水',
+      '看周边配套：地铁 / 学校 / 医院 / 商业实测',
+      '核学区划片与落户政策（以教育局 / 公安最新公告为准）',
+      '查产权：抵押 / 查封 / 共有权人，签约前做产调',
+      '算月供承受力（月供 / 收入≤50%），先查征信',
+      '列明所有税费与中介费承担方，写入合同'
+    ],
+    links:[
+      {em:'🎬',label:'抖音·买房避坑',plat:'douyin',q:'买房避坑 套路 中介'},
+      {em:'🎬',label:'抖音·自己验房',plat:'douyin',q:'验房注意事项 自己验房'},
+      {em:'🎬',label:'抖音·房贷利率',plat:'douyin',q:'最新房贷利率 公积金贷款'},
+      {em:'🔍',label:'搜·泉州住建局',plat:'search',q:'泉州市住房和城乡建设局'},
+      {em:'🔍',label:'搜·晋江购房政策',plat:'search',q:'晋江 购房 落户 政策'}
+    ],
     sections:[
       {title:'① 购房资格核查', items:[
         {pt:'先确认本地限购政策：以家庭为单位核算，看户口、社保/个税连续缴纳年限（多数城市需 2–5 年）、已有套数。',tp:'中介口头承诺“能包装资格、代缴社保破限购”。',fx:'只信当地住建委/税务局官网与不动产登记中心书面结论；社保断缴不认，代缴有法律风险。'},
@@ -243,6 +305,12 @@ const MODULES = {
       +'• <b>人工行情</b>：闽南工价中等，<b>半包为主流</b>（工+辅料，主材自购更可控）；泥瓦/水电师傅日薪随季节浮动，签约前多询几家、按进度付款。<br>'
       +'• <b>风格偏好</b>：本地偏实用耐脏，瓷砖多选浅灰/米黄通铺；全屋定制颗粒板性价比高，原木/奶油风近年走俏。<br>'
       +'• <b>防潮抗台</b>：回南天重点做墙面与卫生间防水、加强通风；门窗选抗风压好的型材，低楼层加防潮地垄与防盗网。',
+    links:[
+      {em:'🎬',label:'抖音·装修避坑',plat:'douyin',q:'装修避坑 增项套路'},
+      {em:'🎬',label:'抖音·半包全包',plat:'douyin',q:'半包 全包 清包 怎么选'},
+      {em:'🎬',label:'抖音·装修公司',plat:'douyin',q:'装修公司 增项 防坑'},
+      {em:'🔍',label:'搜·泉州建材',plat:'search',q:'泉州 建材市场 装修'}
+    ],
     sections:[
       {title:'① 预算分配方案', items:[
         {pt:'总预算按模块切：硬装施工 30–35%、主材（瓷砖/地板/门窗/橱柜）30–35%、全屋定制 15%、软装家具 10–15%、家电 10%、备用金 10–15%。',tp:'“8 万全包”低价引流，开工后增项翻倍。',fx:'先做详细预算表再找施工；硬性预留 10–15% 不可预见费；主材预留 20% 升级空间。'},
@@ -330,6 +398,12 @@ const MODULES = {
       '⚠ 地板装在全屋定制之后、软装之前，避免被刮。',
       '⚠ 油漆与木工不要同时同区作业，避免粉尘污染未干漆面。',
       '⚠ 美缝在保洁前做，开荒在软装前做，顺序错等于白做。'
+    ],
+    links:[
+      {em:'🎬',label:'抖音·施工流程',plat:'douyin',q:'装修施工流程 标准工序'},
+      {em:'🎬',label:'抖音·水电改造',plat:'douyin',q:'水电改造 避坑 验收'},
+      {em:'🎬',label:'抖音·闭水试验',plat:'douyin',q:'卫生间 闭水试验 怎么做'},
+      {em:'🔍',label:'搜·验收标准',plat:'search',q:'住宅室内装饰装修工程质量验收标准'}
     ]
   },
 
@@ -350,6 +424,11 @@ const MODULES = {
     examples:[
       {t:'奶油风 · 三室两厅',p:'现代奶油风三室两厅，客餐厅一体，浅米色墙面，原木地板，双眼皮简约吊顶，无主灯设计，柔和暖光，弧形门洞，浅色系布艺沙发，开放式餐边柜，高清实景，自然光，8K，室内摄影，广角视角，干净通透'},
       {t:'原木风 · 两居室',p:'日式原木风小户型，浅木色全屋柜体，大白墙，简约推拉门，落地大窗户，自然采光，极简收纳，无复杂造型，温馨居家，写实室内效果图，高清'}
+    ],
+    links:[
+      {em:'🎬',label:'抖音·装修效果图',plat:'douyin',q:'装修效果图 实景 参考'},
+      {em:'🎬',label:'抖音·奶油风案例',plat:'douyin',q:'奶油风 装修 实景'},
+      {em:'🎬',label:'抖音·泉州案例',plat:'douyin',q:'泉州 装修 案例 实景'}
     ]
   },
 
@@ -362,7 +441,7 @@ const MODULES = {
 
 /* ============== 渲染 ============== */
 const $ = s=>document.querySelector(s);
-function showMenu(){ $('#menu').style.display='grid'; $('#content').style.display='none'; window.scrollTo(0,0); }
+function showMenu(){ $('#menu').style.display='grid'; $('#content').style.display='none'; updateMenuBadges(); window.scrollTo(0,0); }
 
 function openModule(key){
   const m = MODULES[key];
@@ -373,11 +452,12 @@ function openModule(key){
     <div class="m-intro">${m.intro}</div>` + (m.local ? `<div class="lbox">${m.local}</div>` : '');
 
   if(key==='flow'){
-    html += `<div class="flow">`;
-    m.steps.forEach(s=>{
-      html += `<div class="step"><div class="n">${s.n}</div><div class="nm">${s.nm}</div>
+    html += `<div class="progress"><i id="fl_prog"></i></div><div class="ptxt" id="fl_txt"></div><div class="flow">`;
+    m.steps.forEach((s,idx)=>{
+      html += `<div class="step" id="st_${idx}"><div class="n">${s.n}</div><div class="nm">${s.nm}</div>
         <div class="meta"><span>⏱ ${s.d}</span>${s.meta.map(x=>`<span>${x}</span>`).join('')}</div>
-        <ul>${s.points.map(p=>`<li>${p}</li>`).join('')}</ul></div>`;
+        <ul>${s.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+        <span class="done-tog" onclick="toggleStep(${idx},this)">○ 标记完成</span></div>`;
     });
     html += `</div><div class="danger"><b>交叉施工雷区：</b><br>${m.cross.join('<br>')}</div>`;
   } else if(key==='draw'){
@@ -419,16 +499,15 @@ function openModule(key){
       <button class="btn" onclick="calcBudget()">⚡ 一键测算预算</button>
       <div class="out" id="b_result" style="margin-top:12px"></div>
     </div>`;
+  } else if(key==='buy'){
+    html += renderSections(m);
+    html += renderChecklist('buy', m.checklist);
   } else {
-    m.sections.forEach((sec,i)=>{
-      const body = sec.items.map(it=>`
-        <div class="row"><span class="pill pt">要点</span><span class="pt">${it.pt}</span></div>
-        <div class="row"><span class="pill tp">套路</span><span class="tp">${it.tp}</span></div>
-        <div class="row"><span class="pill fx">方案</span><span class="fx">${it.fx}</span></div>`).join('<hr style="border:none;border-top:1px dashed var(--line);margin:8px 0">');
-      html += `<div class="sec"><div class="sec-h"><h3>${sec.title}</h3><span class="copy" onclick="copySec(this)">📋 复制本节</span></div>${body}</div>`;
-    });
+    html += renderSections(m);
   }
+  if(m.links) html += linksHtml(m.links);
   c.innerHTML = html;
+  if(key==='buy'||key==='flow') applyChecks(key);
   window.scrollTo(0,0);
 }
 
@@ -484,7 +563,14 @@ function calcBudget(){
   const subtotal=hard+soft+app, reserve=subtotal*0.08, total=subtotal+reserve;
   const yuan=n=>'¥'+Math.round(n).toLocaleString('zh-CN');
   const cityShow = rawCity ? (rawCity+'（'+ci.label+'）') : ci.label;
+  const ckw = rawCity ? rawCity : '本地';
   const note = (rawCity && ct==='二线') ? '<p style="font-size:12px;color:var(--warn)">⚠ 未识别到具体城市，已按「二线」系数测算；若为一/新一线或县城，请在城市栏填更具体的城市名。</p>' : '';
+  const bLinks = `<div class="links"><h4>📎 预算相关直达链接（抖音最新报价 / 避坑案例）</h4><div class="linkrow">
+    <a class="lk" href="https://www.douyin.com/search/${encodeURIComponent(ckw+'装修报价 预算')}" target="_blank" rel="noopener"><span class="em">🎬</span>${ckw}装修报价</a>
+    <a class="lk" href="https://www.douyin.com/search/${encodeURIComponent(ckw+'装修避坑')}" target="_blank" rel="noopener"><span class="em">🎬</span>${ckw}装修避坑</a>
+    <a class="lk" href="https://www.douyin.com/search/${encodeURIComponent('装修预算分配 省钱')}" target="_blank" rel="noopener"><span class="em">🎬</span>装修预算分配</a>
+    <a class="lk" href="https://www.baidu.com/s?wd=${encodeURIComponent(ckw+'建材市场 装修')}" target="_blank" rel="noopener"><span class="em">🔍</span>搜·${ckw}建材</a>
+  </div></div>`;
   const rows=cats.map(([k,r])=>`<tr><td>${k}</td><td>${yuan(hard*r)}</td><td>${Math.round(r*100)}%</td></tr>`).join('');
   const html=`<div class="sec" style="border-left:4px solid var(--brand)">
     <div class="sec-h"><h3>💰 ${cityShow} · ${tier} · ${mode}</h3><span class="copy" onclick="copyBudget()">📋 复制完整方案</span></div>
@@ -509,12 +595,87 @@ function calcBudget(){
       • <b>主材升级</b>：瓷砖/地板/洁具临时升档最烧钱。</div>
     <div class="row"><span class="pill pt">省钱</span><span class="pt">半包自购主材；瓷砖选二线品牌；定制柜用颗粒板替代实木；灯具洁具大促囤货；清包省公司利润但需自盯。</span></div>
     <div class="row"><span class="pill tp">陷阱</span><span class="tp">低价引流漏项、水电无上限按实结算、防水范围模糊、管理费/垃圾清运另算、按建面而非套内计价虚高。</span></div>
+    ${bLinks}
   </div>`;
   $('#b_result').innerHTML=html;
   budgetTxt=`【装修预算测算】\n建面 ${area}㎡ ｜ ${cityShow} ｜ ${tier} ｜ ${mode}\n── 硬装分项 ──\n`+cats.map(([k,r])=>`${k}：${yuan(hard*r)}（${Math.round(r*100)}%）`).join('\n')+`\n硬装合计：${yuan(hard)}\n软装家具：${yuan(soft)}\n家电：${yuan(app)}\n应急备用金(8%)：${yuan(reserve)}\n预算总计：${yuan(total)}\n── 易超支 ──\n水电 / 全屋定制 / 拆除 / 主材升级\n── 省钱 ──\n半包自购主材、二线品牌瓷砖、颗粒板替代实木、大促囤货\n── 陷阱 ──\n低价漏项、水电无上限、防水模糊、管理费另算`;
   toast('已测算，可复制');
 }
 function copyBudget(){ if(budgetTxt) doCopy(budgetTxt); else toast('请先测算'); }
+
+/* ============== 公共渲染 ============== */
+function renderSections(m){
+  return m.sections.map(sec=>{
+    const body=sec.items.map(it=>`
+      <div class="row"><span class="pill pt">要点</span><span class="pt">${it.pt}</span></div>
+      <div class="row"><span class="pill tp">套路</span><span class="tp">${it.tp}</span></div>
+      <div class="row"><span class="pill fx">方案</span><span class="fx">${it.fx}</span></div>`).join('<hr style="border:none;border-top:1px dashed var(--line);margin:8px 0">');
+    return `<div class="sec"><div class="sec-h"><h3>${sec.title}</h3><span class="copy" onclick="copySec(this)">📋 复制本节</span></div>${body}</div>`;
+  }).join('');
+}
+function renderChecklist(mod, items){
+  return `<div class="checklist">
+    <h4>✅ 看房现场查验清单（点击勾选，进度自动保存本机）</h4>
+    <div class="progress"><i id="ck_prog"></i></div>
+    <div class="ptxt" id="ck_txt"></div>
+    <div id="ck_list">${items.map((t,i)=>`<div class="chk" onclick="toggleChk('${mod}',${i},this)"><span class="box"></span><span class="txt">${t}</span></div>`).join('')}</div>
+  </div>`;
+}
+function linksHtml(arr){
+  if(!arr||!arr.length) return '';
+  const items=arr.map(l=>{
+    const url = l.url || (l.plat==='search'
+      ? 'https://www.baidu.com/s?wd='+encodeURIComponent(l.q)
+      : 'https://www.douyin.com/search/'+encodeURIComponent(l.q));
+    return `<a class="lk" href="${url}" target="_blank" rel="noopener"><span class="em">${l.em||'🎬'}</span>${l.label}</a>`;
+  }).join('');
+  return `<div class="links"><h4>📎 相关直达链接（抖音 / 搜索，点开即看最新案例与避坑）</h4><div class="linkrow">${items}</div></div>`;
+}
+
+/* ============== 勾选状态（localStorage） ============== */
+function loadState(mod){ try{ const v=localStorage.getItem('hrw_ck_'+mod); return new Set(v?JSON.parse(v):[]); }catch(e){ return new Set(); } }
+function saveState(mod,set){ try{ localStorage.setItem('hrw_ck_'+mod, JSON.stringify([...set])); }catch(e){} }
+function totalOf(mod){ return mod==='buy'? MODULES.buy.checklist.length : MODULES.flow.steps.length; }
+function toggleChk(mod,i,el){
+  el.classList.toggle('on');
+  const set=loadState(mod);
+  if(el.classList.contains('on')) set.add(i); else set.delete(i);
+  saveState(mod,set); refreshProgress(mod);
+}
+function toggleStep(idx,el){
+  const card=document.getElementById('st_'+idx); if(!card) return;
+  card.classList.toggle('done');
+  const on=card.classList.contains('done');
+  el.innerText = on ? '✓ 已完成' : '○ 标记完成';
+  const set=loadState('flow');
+  if(on) set.add(idx); else set.delete(idx);
+  saveState('flow',set); refreshProgress('flow'); updateMenuBadges();
+}
+function refreshProgress(mod){
+  const total=totalOf(mod), done=loadState(mod).size, pct=Math.round(done/total*100);
+  const prog=document.getElementById(mod==='buy'?'ck_prog':'fl_prog');
+  const txt=document.getElementById(mod==='buy'?'ck_txt':'fl_txt');
+  if(prog) prog.style.width=pct+'%';
+  if(txt) txt.innerHTML=`已${mod==='buy'?'查验':'完成'} <b>${done}</b> / ${total}（${pct}%）`;
+}
+function applyChecks(mod){
+  const set=loadState(mod);
+  if(mod==='buy'){
+    [...document.querySelectorAll('#ck_list .chk')].forEach((el,i)=>{ if(set.has(i)) el.classList.add('on'); });
+  } else {
+    [...document.querySelectorAll('.step')].forEach((el,i)=>{
+      if(set.has(i)){ el.classList.add('done'); const b=el.querySelector('.done-tog'); if(b) b.innerText='✓ 已完成'; }
+    });
+  }
+  refreshProgress(mod); updateMenuBadges();
+}
+function updateMenuBadges(){
+  ['buy','flow'].forEach(mod=>{
+    const el=document.getElementById('badge_'+mod); if(!el) return;
+    const done=loadState(mod).size;
+    el.innerText = done>0 ? `进度 ${done}/${totalOf(mod)}` : '';
+  });
+}
 
 /* ============== 复制 ============== */
 function copyText(id){
@@ -555,7 +716,21 @@ function runCmd(){
   for(const [k,re] of map){ if(re.test(v)){ openModule(k); $('#cmd').value=''; return; } }
   toast('未匹配到卡片，试试输入「买房前期避坑台」「效果图」或「菜单」');
 }
+/* ============== 笔记（自动保存） ============== */
+function initNote(){
+  const ta=document.getElementById('mynote'); if(!ta) return;
+  try{ ta.value=localStorage.getItem('hrw_note')||''; }catch(e){}
+  ta.addEventListener('input',()=>{
+    try{
+      localStorage.setItem('hrw_note',ta.value);
+      const s=document.getElementById('note_save');
+      if(s) s.innerText='已保存 '+new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
+    }catch(e){}
+  });
+}
+
 showMenu();
+initNote();
 </script>
 </body>
 </html>
