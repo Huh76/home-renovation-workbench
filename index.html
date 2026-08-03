@@ -95,6 +95,27 @@
   .lk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;text-decoration:none;background:#fff;border:1px solid #FFD3E5;border-radius:999px;padding:7px 13px;color:#B23B6E;font-weight:700;box-shadow:0 1px 4px rgba(255,150,190,.12);transition:.15s}
   .lk:hover{background:var(--brand2);color:#fff;border-color:var(--brand2);transform:translateY(-1px)}
   .lk .em{font-size:13px}
+  /* 多平台实时直达 · 视频优先 */
+  .lk.pd{border-color:#FE2C55;color:#FE2C55}
+  .lk.pd:hover{background:#FE2C55;color:#fff;border-color:#FE2C55}
+  .lk.pk{border-color:#FF6B00;color:#FF6B00}
+  .lk.pk:hover{background:#FF6B00;color:#fff;border-color:#FF6B00}
+  .lk.pb{border-color:#FB7299;color:#FB7299}
+  .lk.pb:hover{background:#FB7299;color:#fff;border-color:#FB7299}
+  .lk.px{border-color:#FF2442;color:#FF2442}
+  .lk.px:hover{background:#FF2442;color:#fff;border-color:#FF2442}
+  .lk.pz{border-color:#0084FF;color:#0084FF}
+  .lk.pz:hover{background:#0084FF;color:#fff;border-color:#0084FF}
+  .lk.pbd{border-color:#4E6EF2;color:#4E6EF2}
+  .lk.pbd:hover{background:#4E6EF2;color:#fff;border-color:#4E6EF2}
+  .lk.ptt,.lk.ptq,.lk.pso{border-color:#FF8200;color:#C0362C}
+  .lk.ptt:hover,.lk.ptq:hover,.lk.pso:hover{background:#FF8200;color:#fff;border-color:#FF8200}
+  .lk.psm{border-color:#E63946;color:#E63946}
+  .lk.psm:hover{background:#E63946;color:#fff;border-color:#E63946}
+  .feat{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+  .feat-h{font-size:12px;color:var(--brand2);font-weight:700;margin-bottom:9px}
+  .rt-note{font-size:12.5px;color:#7A5566;background:linear-gradient(135deg,#FFF3F9,#FFE9F3);border:1px solid #FFCFE3;border-left:4px solid var(--brand);border-radius:12px;padding:11px 14px;margin:4px 0 12px;line-height:1.7}
+  .rt-note b{color:var(--brand)}
 
   /* 进度条 */
   .progress{margin:10px 0 5px;height:10px;background:var(--panel);border:1px solid var(--line);border-radius:999px;overflow:hidden}
@@ -154,6 +175,10 @@
     .sec table td,.sec table th,.gen table td,.gen table th{padding:5px 4px}
     body{word-break:break-word}
     .row{font-size:12.5px}
+    .lk{font-size:11.5px;padding:8px 11px}
+    .linkrow{gap:7px}
+    .rt-note{font-size:11.5px;padding:10px 12px}
+    .feat-h{font-size:11px}
   }
 </style>
 </head>
@@ -165,10 +190,11 @@
   <header>
     <div>
       <h1>买房装修一体化工作台</h1>
-      <div class="sub">自住购房者专用 · 离线干货版 · 即开即用（实时联网版见配套智能体提示词 system_prompt.md）</div>
+      <div class="sub">自住购房者专用 · 离线干货版 · 即开即用 ｜ 抖音·快手·B站·小红书 实时直达链接（联网版见 system_prompt.md）</div>
     </div>
     <button class="btn ghost menu-btn" onclick="showMenu()">☰ 菜单</button>
   </header>
+  <div class="rt-note">🔄 <b>实时更新说明</b>：每张卡片底部的「全网平台实时直达」链接，点开即跳到该平台<b>最新</b>搜索结果（抖音 / 快手 / B站 视频优先）；配套 AI 智能体（联网版）每日还会推送新鲜避坑视频与权威链接。本页为离线干货版，精选链接更新于 2026-08-03，长期以「点链接看最新」保持实时。</div>
 <div id="menu">
     <div class="fcard" onclick="openModule('buy')">
       <span class="tag">卡片 1</span>
@@ -439,6 +465,69 @@ const MODULES = {
   }
 };
 
+/* ============== 实时平台直达（全网多平台·视频优先） ============== */
+const TODAY = '2026-08-03';
+const enc = k => encodeURIComponent(k);
+const PLAT = {
+  douyin:{name:'抖音', em:'🎬', cls:'pd', url:k=>'https://www.douyin.com/search/'+enc(k)},
+  kuaishou:{name:'快手', em:'🎬', cls:'pk', url:k=>'https://www.kuaishou.com/search/video?searchKey='+enc(k)},
+  bili:{name:'B站', em:'📺', cls:'pb', url:k=>'https://search.bilibili.com/video?keyword='+enc(k)},
+  xhs:{name:'小红书', em:'📕', cls:'px', url:k=>'https://www.xiaohongshu.com/search_result?keyword='+enc(k)},
+  zhihu:{name:'知乎', em:'📘', cls:'pz', url:k=>'https://www.zhihu.com/search?type=content&q='+enc(k)},
+  baidu:{name:'百度', em:'🔍', cls:'pbd', url:k=>'https://www.baidu.com/s?wd='+enc(k)}
+};
+const PLAT_ORDER = ['douyin','kuaishou','bili','xhs','zhihu','baidu']; // 视频平台优先
+function platLinks(q){
+  if(!q) return '';
+  return PLAT_ORDER.map(key=>{
+    const p = PLAT[key];
+    return `<a class="lk ${p.cls}" href="${p.url(q)}" target="_blank" rel="noopener"><span class="em">${p.em}</span>${p.name}·最新</a>`;
+  }).join('');
+}
+const KW = {
+  buy:'买房避坑 验房 套路 合同',
+  prep:'装修避坑 增项 半包 全包',
+  flow:'装修施工流程 水电 防水 闭水试验',
+  draw:'装修效果图 实景 参考 风格',
+  budget:'装修预算 报价 省钱'
+};
+const FEATPLAT = {
+  bili:{em:'📺',cls:'pb'}, toutiao:{em:'📰',cls:'ptt'}, qq:{em:'📰',cls:'ptq'},
+  smzdm:{em:'📝',cls:'psm'}, sohu:{em:'📰',cls:'pso'}, xhs:{em:'📕',cls:'px'}
+};
+// 编辑精选：真实可访问的视频/图文（联网检索于 TODAY，点开即看；AI 每日补充最新）
+const REALTIME = {
+  buy:[
+    {p:'toutiao', k:'图文', t:'收房验房15条狠招（老师傅）', u:'https://www.toutiao.com/article/7522124191609422346'},
+    {p:'toutiao', k:'图文', t:'10年质检员验房避坑指南', u:'https://www.toutiao.com/w/1828335223369738/'},
+    {p:'qq', k:'图文', t:'2025买房避坑5大坑（真实案例）', u:'https://new.qq.com/rain/a/20251014A00WTL00'},
+    {p:'toutiao', k:'图文', t:'新房先验房再签字·查6处', u:'https://m.toutiao.com/article/7513783249345184282/'}
+  ],
+  prep:[
+    {p:'bili', k:'图文', t:'装修90天避坑全攻略·含时间表清单', u:'https://www.bilibili.com/read/cv43143465'},
+    {p:'bili', k:'图文', t:'环保性价比装修踩坑全流程', u:'https://www.bilibili.com/read/mobile?id=18190873'},
+    {p:'toutiao', k:'图文', t:'年轻人的5个穷装决定·真香', u:'https://www.toutiao.com/article/7547905888226181658/'},
+    {p:'toutiao', k:'图文', t:'8万硬装3万软装逆袭高级感', u:'https://www.toutiao.com/article/7573110767763898922/'}
+  ],
+  flow:[
+    {p:'bili', k:'视频', t:'防水涂料施工方法（BV1tg4y1E7xM）', u:'https://www.bilibili.com/video/BV1tg4y1E7xM/'},
+    {p:'bili', k:'视频', t:'老韩装修VVIP避坑合集', u:'https://space.bilibili.com/2036307347/lists'},
+    {p:'bili', k:'视频', t:'合肥装修老舍·水电防水合集', u:'https://space.bilibili.com/26421236/lists'},
+    {p:'bili', k:'视频', t:'赛兔子装修·流程/插座/定制', u:'https://space.bilibili.com/3546755119450286/dynamic'},
+    {p:'toutiao', k:'图文', t:'《家装之王》20季避坑实用攻略', u:'https://www.toutiao.com/article/7585736082323440171'}
+  ],
+  draw:[
+    {p:'smzdm', k:'图文', t:'5.9w硬装简约温馨小家（附尺寸）', u:'https://post.m.smzdm.com/talk/p/a0qg649z/'},
+    {p:'sohu', k:'图文', t:'90平20万轻美式改造笔记', u:'https://m.sohu.com/a/1021438632_121956424/'},
+    {p:'xhs', k:'图文', t:'小红书奶油风抄作业实拍', u:'https://www.xiaohongshu.com/search_result?keyword=%E5%A5%B6%E6%B2%B9%E9%A3%8E%E8%A3%85%E4%BF%AE%E5%AE%9E%E6%99%AF'}
+  ],
+  budget:[
+    {p:'toutiao', k:'图文', t:'年轻人的5个穷装决定·真香', u:'https://www.toutiao.com/article/7547905888226181658/'},
+    {p:'toutiao', k:'图文', t:'8万硬装3万软装逆袭高级感', u:'https://www.toutiao.com/article/7573110767763898922/'},
+    {p:'smzdm', k:'图文', t:'5.9w硬装简约温馨小家', u:'https://post.m.smzdm.com/talk/p/a0qg649z/'}
+  ]
+};
+
 /* ============== 渲染 ============== */
 const $ = s=>document.querySelector(s);
 function showMenu(){ $('#menu').style.display='grid'; $('#content').style.display='none'; updateMenuBadges(); window.scrollTo(0,0); }
@@ -505,7 +594,7 @@ function openModule(key){
   } else {
     html += renderSections(m);
   }
-  if(m.links) html += linksHtml(m.links);
+  html += linksHtml(key, m);
   c.innerHTML = html;
   if(key==='buy'||key==='flow') applyChecks(key);
   window.scrollTo(0,0);
@@ -565,12 +654,10 @@ function calcBudget(){
   const cityShow = rawCity ? (rawCity+'（'+ci.label+'）') : ci.label;
   const ckw = rawCity ? rawCity : '本地';
   const note = (rawCity && ct==='二线') ? '<p style="font-size:12px;color:var(--warn)">⚠ 未识别到具体城市，已按「二线」系数测算；若为一/新一线或县城，请在城市栏填更具体的城市名。</p>' : '';
-  const bLinks = `<div class="links"><h4>📎 预算相关直达链接（抖音最新报价 / 避坑案例）</h4><div class="linkrow">
-    <a class="lk" href="https://www.douyin.com/search/${encodeURIComponent(ckw+'装修报价 预算')}" target="_blank" rel="noopener"><span class="em">🎬</span>${ckw}装修报价</a>
-    <a class="lk" href="https://www.douyin.com/search/${encodeURIComponent(ckw+'装修避坑')}" target="_blank" rel="noopener"><span class="em">🎬</span>${ckw}装修避坑</a>
-    <a class="lk" href="https://www.douyin.com/search/${encodeURIComponent('装修预算分配 省钱')}" target="_blank" rel="noopener"><span class="em">🎬</span>装修预算分配</a>
-    <a class="lk" href="https://www.baidu.com/s?wd=${encodeURIComponent(ckw+'建材市场 装修')}" target="_blank" rel="noopener"><span class="em">🔍</span>搜·${ckw}建材</a>
-  </div></div>`;
+  const bFeat = REALTIME.budget.map(f=>{ const fp=FEATPLAT[f.p]||{em:'🔗',cls:''}; return `<a class="lk ${fp.cls}" href="${f.u}" target="_blank" rel="noopener"><span class="em">${fp.em}</span>${f.k} ${f.t}</a>`; }).join('');
+  const bLinks = `<div class="links"><h4>📺 预算相关·全网实时直达（抖音/快手/B站/小红书/知乎/百度，点开即看最新报价避坑）</h4><div class="linkrow">
+    ${platLinks(ckw+'装修报价 预算 避坑')}
+  </div><div class="feat"><div class="feat-h">🔗 编辑精选省钱攻略（更新于 ${TODAY}）</div>${bFeat}</div></div>`;
   const rows=cats.map(([k,r])=>`<tr><td>${k}</td><td>${yuan(hard*r)}</td><td>${Math.round(r*100)}%</td></tr>`).join('');
   const html=`<div class="sec" style="border-left:4px solid var(--brand)">
     <div class="sec-h"><h3>💰 ${cityShow} · ${tier} · ${mode}</h3><span class="copy" onclick="copyBudget()">📋 复制完整方案</span></div>
@@ -621,15 +708,20 @@ function renderChecklist(mod, items){
     <div id="ck_list">${items.map((t,i)=>`<div class="chk" onclick="toggleChk('${mod}',${i},this)"><span class="box"></span><span class="txt">${t}</span></div>`).join('')}</div>
   </div>`;
 }
-function linksHtml(arr){
-  if(!arr||!arr.length) return '';
-  const items=arr.map(l=>{
-    const url = l.url || (l.plat==='search'
-      ? 'https://www.baidu.com/s?wd='+encodeURIComponent(l.q)
-      : 'https://www.douyin.com/search/'+encodeURIComponent(l.q));
-    return `<a class="lk" href="${url}" target="_blank" rel="noopener"><span class="em">${l.em||'🎬'}</span>${l.label}</a>`;
-  }).join('');
-  return `<div class="links"><h4>📎 相关直达链接（抖音 / 搜索，点开即看最新案例与避坑）</h4><div class="linkrow">${items}</div></div>`;
+function linksHtml(key, m){
+  const q = KW[key] || '';
+  let h = `<div class="links"><h4>📺 全网平台实时直达（抖音·快手·B站·小红书·知乎·百度，点开即看<b>最新</b>视频/图文）</h4>`;
+  h += `<div class="linkrow">${platLinks(q)}</div>`;
+  const feat = REALTIME[key];
+  if(feat && feat.length){
+    h += `<div class="feat"><div class="feat-h">🔗 编辑精选实拍/攻略（更新于 ${TODAY}｜点开即看，AI 每日补充最新）</div>`;
+    h += feat.map(f=>{
+      const fp = FEATPLAT[f.p] || {em:'🔗',cls:''};
+      return `<a class="lk ${fp.cls}" href="${f.u}" target="_blank" rel="noopener"><span class="em">${fp.em}</span>${f.k} ${f.t}</a>`;
+    }).join('') + `</div>`;
+  }
+  h += `</div>`;
+  return h;
 }
 
 /* ============== 勾选状态（localStorage） ============== */
